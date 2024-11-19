@@ -61,7 +61,7 @@ router.post('/admin',async (req,res) => {
     try {
         const {username,password} = req.body;
 
-        const user = await User.find({username});
+        const user = await User.findOne({username});
 
         if (!user){
             return res.status(401).json({message: 'Invalid User'});
@@ -73,7 +73,7 @@ router.post('/admin',async (req,res) => {
         }
         const token = jwt.sign({userid:user._id},jwtSecret);
 
-        req.cookies('token',token,{httpOnly:true});
+        res.cookie('token',token,{httpOnly:true});
 
         res.redirect('/dashboard');
 }catch(error){
