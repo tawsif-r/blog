@@ -1,15 +1,15 @@
 <header class="header">
-    <a href="/" class="header__logo">Node</a>
+    <a href="/" class="header__logo">WoodenBoard</a>
     <nav class="header__nav">
         <ul>
             <li>
-                <a href="/" class="Home">Home</a>
+                <a href="/" class="<%= isActiveRoute('/',currentRoute) %>">Home</a>
             </li>
             <li>
-                <a href="/about" class="About">About</a>
+                <a href="/about" class="<%= isActiveRoute('/about',currentRoute) %>">About</a>
             </li>
             <li>
-                <a href="/contact" class="Contact">Contact</a>
+                <a href="/contact" class="<%= isActiveRoute('/contact',currentRoute) %>">Contact</a>
             </li>
         </ul>
     </nav>

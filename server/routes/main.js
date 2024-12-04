@@ -3,6 +3,12 @@ const router = express.Router();
 const Post = require('../models/Post');
 
 // Routes
+
+/* 
+GET
+HOME
+*/
+
 router.get('/',async (req,res)=>{
     try {
         const locals = {
@@ -34,7 +40,8 @@ router.get('/',async (req,res)=>{
             current: page,
             nextPage: hasNextPage ? nextPage : null,
             totalPages,
-            count
+            count,
+            currentRoute:'/'
         });
     }catch(error){
         console.log(error);
@@ -61,7 +68,11 @@ router.get('/post/:id', async(req,res) =>{
             description: "Simple blog created with Nodejs, Express & MongoDB."
         }
 
-        res.render('post',{locals,data});
+        res.render('post',{
+            locals,
+            data,
+            currentRoute:`/post/${slug}`
+        });
         } catch (error) {
             console.log(error);
     }
@@ -109,7 +120,9 @@ router.post('/search',async (req,res)=>{
 
 
 router.get('/about',(req,res)=>{
-    res.render('about');
+    res.render('about',{
+        currentRoute:'/about'
+    });
 });
 
 

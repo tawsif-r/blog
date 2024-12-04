@@ -7,6 +7,7 @@ const sessions = require('express-session');
 const MongoStore = require('connect-mongo');
 
 const connectDB = require('./server/config/db');
+const {isActiveRoute} = require('./server/helpers/routeHelpers');
 
 const app = express();
 
@@ -34,6 +35,10 @@ app.use(sessions({
 app.use(expressLayouts);
 app.set('layout', './layouts/main');  // Corrected path
 app.set('view engine', 'ejs');        // Corrected syntax
+
+
+
+app.locals.isActiveRoute = isActiveRoute;
 
 // Routes
 app.use('/', require('./server/routes/main'));
